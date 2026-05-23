@@ -1,0 +1,16 @@
+.page-title { font-weight: 700; color: #e5e7eb; }
+
+.btn-teal {
+  background: #14B8A6;
+  color: #fff;
+  border: 0;
+}
+.btn-teal:hover { filter: brightness(1.05); }
+
+.preview {
+  max-width: 280px;
+  max-height: 280px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  object-fit: cover;
+}

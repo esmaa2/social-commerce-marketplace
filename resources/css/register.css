@@ -1,0 +1,152 @@
+:root{
+  --bg:#0c1116; --card:#0f1720; --text:#e6edf3; --muted:#a2b3c5;
+  --primary:#14B8A6; --primary-600:#0D9488; --ring:#99F6E4;
+  --border:rgba(255,255,255,.1); --radius:16px; --shadow:0 12px 30px rgba(0,0,0,.35);
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,"Noto Sans",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; color:var(--text);
+  background:
+    radial-gradient(1200px 800px at 80% -20%, #14202b 0%, transparent 70%),
+    radial-gradient(900px 700px at -10% 110%, #14242e 0%, transparent 70%),
+    var(--bg);
+  font:14px/1.5 var(--font);
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+}
+
+/* Layout */
+.page{ min-height:100%; display:grid; grid-template-columns: 1.1fr 0.9fr; }
+@media (max-width:980px){ .page{ grid-template-columns:1fr } .aside{ order:-1; min-height:220px } }
+/* Aside / brand pitch */
+.aside{
+  position:relative; overflow:hidden; padding:32px;
+  display:flex; align-items:center; justify-content:center;
+  background:
+    radial-gradient(800px 800px at 120% 30%, color-mix(in srgb, var(--primary) 25%, transparent), transparent 60%),
+    linear-gradient(180deg, rgba(18,26,36,.9), rgba(18,26,36,.6));
+}
+
+.field textarea{
+  flex:1;
+  background:transparent;
+  border:0;
+  outline:0;
+  color:var(--text);
+  font:14px/1.4 var(--font);
+  min-width:0;
+  resize:vertical;
+}
+
+
+.grid{
+  position:absolute; inset:0; opacity:.18; pointer-events:none;
+  background:
+    linear-gradient(transparent 39px, rgba(255,255,255,.06) 40px),
+    linear-gradient(90deg, transparent 39px, rgba(255,255,255,.06) 40px);
+  background-size:40px 40px;
+  mask-image: radial-gradient(80% 60% at 50% 40%, black, transparent 75%);
+}
+.pitch{ max-width:640px; text-align:center }
+.brand{ display:flex; gap:12px; align-items:center; justify-content:center; margin-bottom:18px; font-weight:700; letter-spacing:.2px; }
+.logo{
+  width:38px; height:38px; border-radius:10px; display:grid; place-items:center;
+  background:linear-gradient(135deg, var(--primary), #22d3ee);
+  box-shadow:0 6px 18px color-mix(in srgb, var(--primary) 55%, transparent);
+}
+h1{ font-size:clamp(22px, 3.4vw, 32px); margin:8px 0 10px }
+.lead{ color:var(--muted); margin:0 auto 22px; max-width:520px }
+.badges{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:16px }
+.badge{
+  border:1px solid var(--border);
+  color:#d1faf5; background:color-mix(in srgb, var(--primary) 15%, transparent);
+  padding:8px 12px; border-radius:999px; font-size:12px;
+}
+/* Form panel */
+.panel{ display:flex; align-items:center; justify-content:center; padding:48px 28px }
+.card{
+  width:100%; max-width:680px;
+  background:color-mix(in srgb, var(--card) 92%, black 8%);
+  border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;
+}
+.card-head{ padding:26px 26px 10px; border-bottom:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.03), transparent); }
+.title{ font-size:20px; margin:0 0 6px }
+.subtitle{ color:var(--muted); font-size:13px; margin:0 }
+.card-body{ padding:22px 26px 26px }
+/* Horizontal form grid */
+form{ display:grid; gap:14px; margin-top:14px }
+.form-grid{ display:grid; grid-template-columns:120px 1fr; gap:12px 14px; align-items:center; }
+@media (max-width:640px){ .form-grid{ grid-template-columns:1fr } }
+label{ font-size:13px; color:#cfe6dd }
+.field{
+  position:relative; background:#0b131c; border:1px solid var(--border); border-radius:12px;
+  display:flex; align-items:center; padding:10px 12px; gap:10px;
+  transition:border-color .2s, box-shadow .2s, background .2s;
+}
+.field:focus-within{
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px color-mix(in srgb, var(--ring) 60%, transparent);
+  background:#0d1822;
+}
+/* Remove the blue inner focus ring from inputs/textareas */
+.field input:focus,
+.field input:focus-visible,
+.field textarea:focus,
+.field textarea:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;       /* Chrome’s focus ring */
+}
+
+/* (already have) green focus on the wrapper */
+.field:focus-within{
+  border-color: var(--primary);
+  outline: 3px solid color-mix(in srgb, var(--ring) 60%, transparent);
+  outline-offset: 2px;
+  box-shadow: none;
+  background:#0d1822;
+}
+
+.field input{
+  flex:1; background:transparent; border:0; outline:0; color:var(--text); font:14px/1.2 var(--font); min-width:0;
+}
+.eyebtn{ background:transparent; border:0; color:#c8d6e2; cursor:pointer; padding:6px; border-radius:8px }
+.eyebtn:hover{ background:rgba(255,255,255,.06) }
+.hint{ font-size:12px; color:var(--muted) }
+.error{ color:#ff7a85; font-size:12px; margin:.25rem 0 0 }
+.input-error{ border-color:#ff7a85 !important }
+/* Avatar */
+.avatar{
+  display:flex; align-items:center; gap:14px;
+  background:#0b131c; border:1px dashed var(--border); border-radius:12px; padding:12px;
+}
+.preview{
+  width:60px; height:60px; border-radius:50%; overflow:hidden; border:1px solid var(--border);
+  background:#0f1a24; display:grid; place-items:center; font-size:11px; color:#9fb0c2; flex:0 0 60px;
+}
+.preview img{ width:100%; height:100%; object-fit:cover }
+/* Actions */
+.actions{ display:flex; gap:12px; margin-top:6px; justify-content:flex-end }
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  padding:12px 14px; font-weight:600; letter-spacing:.2px;
+  border-radius:12px; border:1px solid transparent; cursor:pointer;
+  transition:transform .04s ease, background .2s, border-color .2s; user-select:none;
+}
+.btn:active{ transform:translateY(1px) }
+.btn-primary{
+  background:linear-gradient(180deg, var(--primary), var(--primary-600));
+  color:#051d1a; border-color:color-mix(in srgb, var(--primary) 70%, transparent);
+  box-shadow:0 10px 24px color-mix(in srgb, var(--primary) 30%, transparent), inset 0 1px 0 rgba(255,255,255,.15);
+}
+.btn-primary:hover{ background:linear-gradient(180deg, var(--primary-600), #0b7a6f) }
+.btn-ghost{ background:transparent; color:#cfe6dd; border-color:var(--border) }
+.btn-ghost:hover{ background:rgba(255,255,255,.06) }
+/* Required asterisk */
+.form-grid > label:has(+ div .field input[required])::after,
+.form-grid > label:has(+ div .field textarea[required])::after,
+.form-grid > label:has(+ div .field select[required])::after {
+  content: " *"; color: var(--primary); font-weight:700; margin-left:4px;
+}
+@media (prefers-reduced-motion:reduce){ *{ transition:none !important; animation:none !important } }

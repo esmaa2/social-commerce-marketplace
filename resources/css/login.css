@@ -1,0 +1,173 @@
+  :root{
+      --bg:#0c1116; --card:#0f1720; --text:#e6edf3; --muted:#a2b3c5;
+      --primary:#14B8A6; --primary-600:#0D9488; --ring:#99F6E4;
+      --border:rgba(255,255,255,.1); --radius:16px; --shadow:0 12px 30px rgba(0,0,0,.35);
+      --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,"Noto Sans",sans-serif;
+      --mono: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 80% -20%, #14202b 0%, transparent 70%),
+        radial-gradient(900px 700px at -10% 110%, #14242e 0%, transparent 70%),
+        var(--bg);
+      font:14px/1.5 var(--font);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Layout */
+    .page{ min-height:100%; display:grid; grid-template-columns:1.1fr 0.9fr; }
+    @media (max-width:980px){ .page{grid-template-columns:1fr} .aside{order:-1; min-height:220px} }
+
+    /* Aside */
+    .aside{
+      position:relative; overflow:hidden; padding:32px;
+      display:flex; align-items:center; justify-content:center;
+      background:
+        radial-gradient(800px 800px at 120% 30%, color-mix(in srgb, var(--primary) 25%, transparent), transparent 60%),
+        linear-gradient(180deg, rgba(18,26,36,.9), rgba(18,26,36,.6));
+    }
+    .grid{
+      position:absolute; inset:0; opacity:.18; pointer-events:none;
+      background:
+        linear-gradient(transparent 39px, rgba(255,255,255,.06) 40px),
+        linear-gradient(90deg, transparent 39px, rgba(255,255,255,.06) 40px);
+      background-size:40px 40px;
+      mask-image: radial-gradient(80% 60% at 50% 40%, black, transparent 75%);
+    }
+    .pitch{max-width:640px; text-align:center}
+    .brand{display:flex; gap:12px; align-items:center; justify-content:center; margin-bottom:18px; font-weight:700}
+    .logo{
+      width:38px; height:38px; border-radius:10px; display:grid; place-items:center;
+      background:linear-gradient(135deg, var(--primary), #22d3ee);
+      box-shadow:0 6px 18px color-mix(in srgb, var(--primary) 55%, transparent);
+    }
+    h1{font-size:clamp(22px,3.4vw,32px); margin:8px 0 10px}
+    .lead{color:var(--muted); margin:0 auto 22px; max-width:520px}
+    .badges{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:16px}
+    .badge{
+      border:1px solid var(--border);
+      color:#d1faf5; background:color-mix(in srgb, var(--primary) 15%, transparent);
+      padding:8px 12px; border-radius:999px; font-size:12px;
+    }
+
+    /* Panel / card */
+    .panel{display:flex; align-items:center; justify-content:center; padding:48px 28px}
+    .card{
+      width:100%; max-width:640px;
+      background: color-mix(in srgb, var(--card) 92%, black 8%);
+      border:1px solid var(--border); border-radius:var(--radius);
+      box-shadow:var(--shadow); overflow:hidden;
+    }
+    .card-head{
+      padding:26px 26px 10px;
+      border-bottom:1px solid var(--border);
+      background:linear-gradient(180deg, rgba(255,255,255,.03), transparent);
+    }
+    .title{font-size:20px; margin:0 0 6px}
+    .subtitle{color:var(--muted); font-size:13px; margin:0}
+    .card-body{padding:22px 26px 26px}
+
+    /* Form */
+    form{display:grid; gap:14px; margin-top:14px}
+    .form-grid{
+      display:grid; grid-template-columns:120px 1fr; gap:12px 14px; align-items:center;
+    }
+    @media (max-width:640px){ .form-grid{grid-template-columns:1fr} }
+
+    label{font-size:13px; color:#cfe6dd}
+    .field{
+      background:#0b131c; border:1px solid var(--border); border-radius:12px;
+      display:flex; align-items:center; gap:10px; padding:10px 12px;
+      transition:border-color .2s, background .2s, outline .2s;
+    }
+    /* Keep green, remove blue inner ring */
+    .field:focus-within{
+      border-color: var(--primary);
+      outline: 3px solid color-mix(in srgb, var(--ring) 60%, transparent);
+      outline-offset: 2px;
+      background:#0d1822;
+      box-shadow:none;
+    }
+    .field input{
+      flex:1; background:transparent; border:0; outline:0; color:var(--text);
+      font:14px/1.2 var(--font); min-width:0;
+    }
+    .field input:focus,
+    .field input:focus-visible{ outline:none !important; box-shadow:none !important; }
+
+    .eyebtn{ background:transparent; border:0; color:#c8d6e2; cursor:pointer; padding:6px; border-radius:8px }
+    .eyebtn:hover{ background:rgba(255,255,255,.06) }
+
+    .row-minor{
+      grid-column:1 / -1; display:flex; align-items:center; justify-content:space-between;
+      gap:12px; color:#cfe6dd; font-size:13px;
+    }
+    .row-minor a{ color:#7dd3fc; text-decoration:none }
+    .row-minor a:hover{ text-decoration:underline }
+
+    .actions{display:flex; gap:12px; margin-top:6px; justify-content:flex-end}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 14px; font-weight:600; letter-spacing:.2px;
+      border-radius:12px; border:1px solid transparent; cursor:pointer;
+      user-select:none; transition: transform .04s ease, background .2s, border-color .2s;
+    }
+    .btn:active{transform:translateY(1px)}
+    .btn-primary{
+      background:linear-gradient(180deg, var(--primary), var(--primary-600));
+      color:#051d1a; border-color: color-mix(in srgb, var(--primary) 70%, transparent);
+      box-shadow:0 10px 24px color-mix(in srgb, var(--primary) 30%, transparent), inset 0 1px 0 rgba(255,255,255,.15);
+    }
+    .btn-primary:hover{background:linear-gradient(180deg, var(--primary-600), #0b7a6f)}
+    .btn-ghost{background:transparent; color:#cfe6dd; border-color:var(--border)}
+    .btn-ghost:hover{background:rgba(255,255,255,.06)}
+
+    .footer{ display:flex; justify-content:center; gap:6px; margin-top:10px; color:#cfe6dd; font-size:13px; }
+    .footer a{ color:var(--primary); text-decoration:none }
+    .footer a:hover{ text-decoration:underline }
+
+    .error{ color:#ff7a85; font-size:12px; margin-top:.35rem }
+    .input-error{ border-color:#ff7a85 !important }
+    @media (prefers-reduced-motion:reduce){ *{transition:none !important; animation:none !important} }
+    /* Tell the UA we’re in dark mode so default controls don’t go light */
+:root { color-scheme: dark; }
+
+/* Base input stays dark */
+.field input,
+.field textarea {
+  background-color: transparent !important;
+  color: var(--text);
+  caret-color: var(--text);
+}
+
+/* Chrome/Edge/Safari autofill */
+.field input:-webkit-autofill,
+.field input:-webkit-autofill:hover,
+.field input:-webkit-autofill:focus,
+.field textarea:-webkit-autofill {
+  -webkit-text-fill-color: var(--text);
+  /* Paint the same dark background inside the control */
+  -webkit-box-shadow: 0 0 0 1000px #0b131c inset !important;
+  box-shadow: 0 0 0 1000px #0b131c inset !important;
+  /* Prevent the yellow fade-in */
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+/* Firefox autofill */
+.field input:-moz-autofill,
+.field textarea:-moz-autofill {
+  box-shadow: 0 0 0 1000px #0b131c inset !important;
+  -moz-text-fill-color: var(--text);
+}
+
+/* Remove any UA focus paint on the control itself; we style the wrapper */
+.field input:focus,
+.field input:focus-visible,
+.field textarea:focus,
+.field textarea:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
